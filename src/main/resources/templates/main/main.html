@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>main</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        button {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<h1>멤버 정보 관리 시스템에 오신 것을 환영합니다</h1>
+<button onclick="location.href='/mem/7'">7번 멤버 조회하기</button>
+<button onclick="location.href='/mem/list'">전체 멤버 목록 조회하기</button>
+<button onclick="location.href='/mem/querymethod'">?팀 이상 멤버 정보 조회하기</button>
+<button onclick="location.href='/mem/regist'">멤버 입력하기</button>
+<button onclick="location.href='/mem/modify'">멤버 이름 수정하기</button>
+<button onclick="location.href='/mem/delete'">멤버 삭제하기</button>
+</body>
+</html>

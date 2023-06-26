@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>list</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f2f2f2;
+    }
+
+    table {
+      margin: 20px auto;
+      border-collapse: collapse;
+      max-width: 800px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    #paging {
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 5px 10px;
+      font-size: 14px;
+      border-radius: 4px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      margin-right: 5px;
+    }
+
+    button[th:disabled] {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+<table>
+  <tr>
+    <th>번호</th>
+    <th>이름</th>
+    <th>성별</th>
+    <th>팀</th>
+    <th>주소</th>
+  </tr>
+  <tr th:each="mem : ${memList}">
+    <td th:text="${mem.memCode}"></td>
+    <td th:text="${mem.memName}"></td>
+    <td th:text="${mem.memGender}"></td>
+    <td th:text="${mem.memDepart}"></td>
+    <td th:text="${mem.memAddress}"></td>
+  </tr>
+</table>
+<div id="paging">
+  <button th:onclick="'location.href=\'/mem/list?page=' + @{${paging.startPage}} + '\''">&lt;&lt;</button>
+  <button th:onclick="'location.href=\'/mem/list?page=' + @{${paging.currentPage - 1}} + '\''"
+          th:disabled="${memList.first}">&lt;</button>
+  <th:block th:each="page : ${#numbers.sequence(paging.startPage, paging.endPage)}">
+    <button th:onclick="'location.href=\'/mem/list?page=' + @{${page}} + '\''"
+            th:text="${page}"
+            th:disabled="${paging.currentPage eq page}"></button>
+  </th:block>
+  <button th:onclick="'location.href=\'/mem/list?page=' + @{${paging.currentPage + 1}} + '\''"
+          th:disabled="${memList.last}">&gt;</button>
+  <button th:onclick="'location.href=\'/mem/list?page=' + @{${paging.endPage}} + '\''">&gt;&gt;</button>
+</div>
+</body>
+</html>

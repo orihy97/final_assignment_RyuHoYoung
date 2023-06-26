@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>regist</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            margin-top: 20px;
+        }
+
+        form {
+            margin: 20px auto;
+            max-width: 400px;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            padding: 5px;
+            width: 100%;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<h1>새로운 멤버 등록</h1>
+<form action="/mem/regist" method="post">
+    <label>멤버 이름 :</label><input type="text" name="memName"><br>
+    <label>멤버 번호 :</label><input type="number" name="memCode"><br>
+    <label>멤버 주소 :</label><input type="text" name="memAddress"><br>
+    <label>팀 :</label>
+    <select name="memDepart" id="memDepart">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <!--
+        카테고리 내용이 변화할 수 있다면 조회 해서 처리해야 하며 fetch로 처리
+        -->
+    </select><br>
+    <label>성별 :</label>
+    <select name="memGender">
+        <option value="남">남자</option>
+        <option value="여">여자</option>
+    </select><br>
+    <input type="submit" value="전송">
+</form>
+<script>
+    fetch('/mem/Depart')
+        .then(res => res.json())
+        .then(data => {
+            const $memDepart = document.getElementById('memDepart');
+            console.log($memDepart)
+            const memDepart = document.getElementById('memDepart');
+            for (let index in data) {
+                const option = document.createElement('option');
+                option.value = data[index].memDepart;
+                option.textContent = data[index].memName;
+                memDepart.appendChild(option);
+            }
+        });
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>searchList</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            margin-top: 20px;
+        }
+
+        table {
+            margin: 20px auto;
+            max-width: 800px;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+        }
+
+        th {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+<h1>[[${memDepart}]]팀을 초과하는 멤버 목록</h1>
+<table>
+    <tr>
+        <th>멤버번호</th>
+        <th>멤버이름</th>
+        <th>멤버성별</th>
+        <th>멤버팀</th>
+        <th>멤버주소</th>
+    </tr>
+    <tr th:each="mem : ${ memList }">
+        <td th:text="${ mem.memCode }"></td>
+        <td th:text="${ mem.memName }"></td>
+        <td th:text="${ mem.memGender }"></td>
+        <td th:text="${ mem.memDepart }"></td>
+        <td th:text="${ mem.memAddress }"></td>
+    </tr>
+</table>
+</body>
+</html>
